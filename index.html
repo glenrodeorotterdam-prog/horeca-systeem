@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111827">
+<title>Horeca Systeem</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f4f6f8;color:#17202a}
+header{background:#111827;color:white;padding:24px 20px 18px}
+.logo{font-size:13px;letter-spacing:2px;opacity:.7}
+h1{margin:5px 0 0;font-size:28px}
+main{padding:18px;max-width:900px;margin:auto}
+.search{width:100%;padding:15px;border:0;border-radius:14px;background:white;font-size:16px;box-shadow:0 2px 10px #00000012}
+.card{background:white;border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 3px 14px #00000012}
+.label{font-size:12px;color:#697586;text-transform:uppercase;letter-spacing:1px}
+.big{font-size:30px;font-weight:700;margin-top:6px}
+h2{margin-top:28px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.module{border:0;border-radius:16px;background:white;padding:18px;text-align:left;font-size:16px;box-shadow:0 2px 10px #00000010}
+.icon{font-size:27px;display:block;margin-bottom:8px}
+button.primary{width:100%;border:0;border-radius:14px;padding:15px;background:#111827;color:white;font-size:16px;margin-top:10px}
+.item{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:14px 0}
+nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:12px 4px}
+nav button{border:0;background:none;font-size:12px;color:#555}
+nav b{display:block;font-size:20px}
+.spacer{height:80px}
+</style>
+</head>
+
+<body>
+<header>
+<div class="logo">HORECA SYSTEEM</div>
+<h1>Dashboard</h1>
+</header>
+
+<main>
+<input class="search" id="search" placeholder="🔎  Zoek product...">
+
+<div class="card">
+<div class="label">Totale voorraadwaarde</div>
+<div class="big" id="total">€ 767,50</div>
+</div>
+
+<h2>Modules</h2>
+<div class="grid">
+<button class="module" onclick="show('Voorraad')"><span class="icon">📦</span><b>Voorraad</b><br>Keuken, wijn & drank</button>
+<button class="module" onclick="show('Keuken')"><span class="icon">👨‍🍳</span><b>Keuken</b><br>Producten & porties</button>
+<button class="module" onclick="show('Wijn')"><span class="icon">🍷</span><b>Wijn</b><br>Flessen & wijnkaart</button>
+<button class="module" onclick="show('Dranken')"><span class="icon">🥃</span><b>Dranken</b><br>Barvoorraad</button>
+<button class="module" onclick="show('Leveranciers')"><span class="icon">🚚</span><b>Leveranciers</b><br>Inkoopprijzen</button>
+<button class="module" onclick="show('Rapporten')"><span class="icon">📊</span><b>Rapporten</b><br>Waarde & verbruik</button>
+</div>
+
+<h2>Voorraad</h2>
+<div class="card" id="items">
+<div class="item"><span>Ossenhaas<br><small>Keuken · 12,5 kg</small></span><b>€ 287,50</b></div>
+<div class="item"><span>Chardonnay<br><small>Wijn · 24 flessen</small></span><b>€ 312,00</b></div>
+<div class="item"><span>Gin<br><small>Drank · 6 flessen</small></span><b>€ 168,00</b></div>
+</div>
+
+<button class="primary" onclick="addProduct()">＋ Product toevoegen</button>
+
+<div class="spacer"></div>
+</main>
+
+<nav>
+<button onclick="show('Dashboard')"><b>⌂</b>Dashboard</button>
+<button onclick="show('Voorraad')"><b>▣</b>Voorraad</button>
+<button onclick="show('Rapporten')"><b>◔</b>Rapporten</button>
+</nav>
+
+<script>
+function show(name){
+ document.querySelector('h1').textContent=name;
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function addProduct(){
+ alert('Product toevoegen komt in de volgende bouwstap.');
+}
+document.getElementById('search').addEventListener('input',function(){
+ const q=this.value.toLowerCase();
+ document.querySelectorAll('.item').forEach(x=>{
+   x.style.display=x.textContent.toLowerCase().includes(q)?'flex':'none';
+ });
+});
+</script>
+</body>
+</html>
