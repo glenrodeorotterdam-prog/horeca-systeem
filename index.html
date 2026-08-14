@@ -2,89 +2,821 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#111827">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f1324">
 <title>Horeca Systeem</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f4f6f8;color:#17202a}
-header{background:#111827;color:white;padding:24px 20px 18px}
-.logo{font-size:13px;letter-spacing:2px;opacity:.7}
-h1{margin:5px 0 0;font-size:28px}
-main{padding:18px;max-width:900px;margin:auto}
-.search{width:100%;padding:15px;border:0;border-radius:14px;background:white;font-size:16px;box-shadow:0 2px 10px #00000012}
-.card{background:white;border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 3px 14px #00000012}
-.label{font-size:12px;color:#697586;text-transform:uppercase;letter-spacing:1px}
-.big{font-size:30px;font-weight:700;margin-top:6px}
-h2{margin-top:28px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.module{border:0;border-radius:16px;background:white;padding:18px;text-align:left;font-size:16px;box-shadow:0 2px 10px #00000010}
-.icon{font-size:27px;display:block;margin-bottom:8px}
-button.primary{width:100%;border:0;border-radius:14px;padding:15px;background:#111827;color:white;font-size:16px;margin-top:10px}
-.item{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:14px 0}
-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:12px 4px}
-nav button{border:0;background:none;font-size:12px;color:#555}
-nav b{display:block;font-size:20px}
-.spacer{height:80px}
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#10151a;
+  color:#f5f3ef;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  padding-bottom:90px;
+}
+
+header{
+  background:#0f1324;
+  padding:30px 24px 25px;
+}
+
+.logo{
+  font-size:13px;
+  letter-spacing:4px;
+  opacity:.7;
+}
+
+h1{
+  margin:6px 0 0;
+  font-size:38px;
+}
+
+main{
+  max-width:900px;
+  margin:auto;
+  padding:25px 18px;
+}
+
+.search{
+  width:100%;
+  padding:18px 20px;
+  border:0;
+  border-radius:20px;
+  background:#080c0f;
+  color:white;
+  font-size:18px;
+  outline:none;
+  margin-bottom:22px;
+}
+
+.card{
+  background:#080c0f;
+  border-radius:22px;
+  padding:25px;
+  margin-bottom:25px;
+  box-shadow:0 8px 25px rgba(0,0,0,.18);
+}
+
+.label{
+  font-size:13px;
+  letter-spacing:2px;
+  color:#aaa49b;
+  text-transform:uppercase;
+}
+
+.big{
+  font-size:38px;
+  font-weight:800;
+  margin-top:8px;
+}
+
+h2{
+  font-size:30px;
+  margin:30px 0 18px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.module{
+  border:0;
+  border-radius:20px;
+  background:#080c0f;
+  color:white;
+  text-align:left;
+  padding:24px 18px;
+  min-height:160px;
+  font-size:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+}
+
+.module .icon{
+  display:block;
+  font-size:30px;
+  margin-bottom:16px;
+}
+
+.module strong{
+  display:block;
+  font-size:20px;
+  margin-bottom:5px;
+}
+
+.module span{
+  color:#bdb9b2;
+  font-size:16px;
+}
+
+.stock-item{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:18px 0;
+  border-bottom:1px solid #34393d;
+}
+
+.stock-item:last-child{
+  border-bottom:0;
+}
+
+.stock-name{
+  font-size:19px;
+  font-weight:700;
+}
+
+.stock-info{
+  color:#aaa9a4;
+  font-size:14px;
+  margin-top:5px;
+}
+
+.price{
+  font-size:19px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.primary{
+  width:100%;
+  border:0;
+  border-radius:18px;
+  padding:18px;
+  background:#111328;
+  color:white;
+  font-size:18px;
+  font-weight:700;
+  margin-top:8px;
+}
+
+.hidden{
+  display:none;
+}
+
+.back{
+  border:0;
+  background:transparent;
+  color:white;
+  font-size:18px;
+  padding:0;
+  margin-bottom:20px;
+}
+
+.form input,
+.form select{
+  width:100%;
+  padding:16px;
+  margin:7px 0;
+  border:1px solid #41464a;
+  border-radius:14px;
+  background:#151a1e;
+  color:white;
+  font-size:16px;
+}
+
+.form button{
+  width:100%;
+  padding:17px;
+  margin-top:10px;
+  border:0;
+  border-radius:15px;
+  background:#171b35;
+  color:white;
+  font-size:17px;
+  font-weight:700;
+}
+
+.stat{
+  display:flex;
+  justify-content:space-between;
+  padding:17px 0;
+  border-bottom:1px solid #34393d;
+}
+
+.stat:last-child{
+  border-bottom:0;
+}
+
+nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:78px;
+  background:#090d10;
+  border-top:1px solid #34393d;
+  display:flex;
+  justify-content:space-around;
+  z-index:20;
+}
+
+nav button{
+  flex:1;
+  border:0;
+  background:none;
+  color:#aaa59d;
+  font-size:14px;
+}
+
+nav b{
+  display:block;
+  font-size:22px;
+  margin-bottom:4px;
+}
+
+.empty{
+  text-align:center;
+  color:#aaa;
+  padding:25px;
+}
+
+@media(max-width:500px){
+  h1{
+    font-size:34px;
+  }
+
+  h2{
+    font-size:28px;
+  }
+
+  .grid{
+    gap:12px;
+  }
+
+  .module{
+    min-height:150px;
+  }
+}
 </style>
 </head>
 
 <body>
+
 <header>
-<div class="logo">HORECA SYSTEEM</div>
-<h1>Dashboard</h1>
+  <div class="logo">HORECA SYSTEEM</div>
+  <h1 id="pageTitle">Dashboard</h1>
 </header>
 
 <main>
-<input class="search" id="search" placeholder="🔎  Zoek product...">
+
+<!-- DASHBOARD -->
+<section id="dashboard">
+
+<input
+  class="search"
+  id="search"
+  type="search"
+  placeholder="🔎 Zoek product..."
+>
 
 <div class="card">
-<div class="label">Totale voorraadwaarde</div>
-<div class="big" id="total">€ 767,50</div>
+  <div class="label">Totale voorraadwaarde</div>
+  <div class="big" id="totalValue">€ 767,50</div>
 </div>
 
 <h2>Modules</h2>
+
 <div class="grid">
-<button class="module" onclick="show('Voorraad')"><span class="icon">📦</span><b>Voorraad</b><br>Keuken, wijn & drank</button>
-<button class="module" onclick="show('Keuken')"><span class="icon">👨‍🍳</span><b>Keuken</b><br>Producten & porties</button>
-<button class="module" onclick="show('Wijn')"><span class="icon">🍷</span><b>Wijn</b><br>Flessen & wijnkaart</button>
-<button class="module" onclick="show('Dranken')"><span class="icon">🥃</span><b>Dranken</b><br>Barvoorraad</button>
-<button class="module" onclick="show('Leveranciers')"><span class="icon">🚚</span><b>Leveranciers</b><br>Inkoopprijzen</button>
-<button class="module" onclick="show('Rapporten')"><span class="icon">📊</span><b>Rapporten</b><br>Waarde & verbruik</button>
+
+<button class="module" onclick="openModule('Voorraad')">
+  <span class="icon">📦</span>
+  <strong>Voorraad</strong>
+  <span>Keuken, wijn & drank</span>
+</button>
+
+<button class="module" onclick="openModule('Keuken')">
+  <span class="icon">👨‍🍳</span>
+  <strong>Keuken</strong>
+  <span>Producten & porties</span>
+</button>
+
+<button class="module" onclick="openModule('Wijn')">
+  <span class="icon">🍷</span>
+  <strong>Wijn</strong>
+  <span>Flessen & wijnkaart</span>
+</button>
+
+<button class="module" onclick="openModule('Dranken')">
+  <span class="icon">🥃</span>
+  <strong>Dranken</strong>
+  <span>Barvoorraad</span>
+</button>
+
+<button class="module" onclick="openModule('Leveranciers')">
+  <span class="icon">🚚</span>
+  <strong>Leveranciers</strong>
+  <span>Inkoopprijzen</span>
+</button>
+
+<button class="module" onclick="openModule('Rapporten')">
+  <span class="icon">📊</span>
+  <strong>Rapporten</strong>
+  <span>Waarde & verbruik</span>
+</button>
+
 </div>
 
 <h2>Voorraad</h2>
-<div class="card" id="items">
-<div class="item"><span>Ossenhaas<br><small>Keuken · 12,5 kg</small></span><b>€ 287,50</b></div>
-<div class="item"><span>Chardonnay<br><small>Wijn · 24 flessen</small></span><b>€ 312,00</b></div>
-<div class="item"><span>Gin<br><small>Drank · 6 flessen</small></span><b>€ 168,00</b></div>
+
+<div class="card" id="stockList">
+
+<div class="stock-item">
+  <div>
+    <div class="stock-name">Ossenhaas</div>
+    <div class="stock-info">Keuken · 12,5 kg · Hanos</div>
+  </div>
+  <div class="price">€ 287,50</div>
 </div>
 
-<button class="primary" onclick="addProduct()">＋ Product toevoegen</button>
+<div class="stock-item">
+  <div>
+    <div class="stock-name">Chardonnay</div>
+    <div class="stock-info">Wijn · 24 flessen · Wijnleverancier</div>
+  </div>
+  <div class="price">€ 312,00</div>
+</div>
 
-<div class="spacer"></div>
+<div class="stock-item">
+  <div>
+    <div class="stock-name">Gin</div>
+    <div class="stock-info">Drank · 6 flessen · Drankleverancier</div>
+  </div>
+  <div class="price">€ 168,00</div>
+</div>
+
+</div>
+
+<button class="primary" onclick="openAddProduct()">
+  ＋ Product toevoegen
+</button>
+
+</section>
+
+
+<!-- MODULE -->
+<section id="modulePage" class="hidden">
+
+<button class="back" onclick="showDashboard()">← Terug naar dashboard</button>
+
+<div class="card">
+  <div class="label">Module</div>
+  <h2 id="moduleTitle">Voorraad</h2>
+  <p id="moduleDescription"></p>
+</div>
+
+<div id="moduleContent"></div>
+
+</section>
+
+
+<!-- ADD PRODUCT -->
+<section id="addProduct" class="hidden">
+
+<button class="back" onclick="showDashboard()">← Terug</button>
+
+<div class="card form">
+
+<h2>Product toevoegen</h2>
+
+<input id="productName" placeholder="Productnaam">
+
+<select id="productCategory">
+  <option value="Keuken">Keuken</option>
+  <option value="Wijn">Wijn</option>
+  <option value="Drank">Drank</option>
+</select>
+
+<input id="productQuantity" type="number" placeholder="Aantal / kg">
+
+<input id="productPrice" type="number" step="0.01" placeholder="Inkoopprijs">
+
+<input id="productSupplier" placeholder="Leverancier">
+
+<button onclick="addProduct()">Product opslaan</button>
+
+</div>
+
+</section>
+
+
+<!-- RAPPORTEN -->
+<section id="reports" class="hidden">
+
+<button class="back" onclick="showDashboard()">← Terug</button>
+
+<h2>Rapporten</h2>
+
+<div class="card">
+
+<div class="stat">
+  <span>Voorraadwaarde</span>
+  <strong id="reportValue">€ 767,50</strong>
+</div>
+
+<div class="stat">
+  <span>Aantal producten</span>
+  <strong id="productCount">3</strong>
+</div>
+
+<div class="stat">
+  <span>Keuken</span>
+  <strong>€ 287,50</strong>
+</div>
+
+<div class="stat">
+  <span>Wijn</span>
+  <strong>€ 312,00</strong>
+</div>
+
+<div class="stat">
+  <span>Drank</span>
+  <strong>€ 168,00</strong>
+</div>
+
+</div>
+
+</section>
+
 </main>
 
+
 <nav>
-<button onclick="show('Dashboard')"><b>⌂</b>Dashboard</button>
-<button onclick="show('Voorraad')"><b>▣</b>Voorraad</button>
-<button onclick="show('Rapporten')"><b>◔</b>Rapporten</button>
+
+<button onclick="showDashboard()">
+  <b>⌂</b>
+  Dashboard
+</button>
+
+<button onclick="openModule('Voorraad')">
+  <b>□</b>
+  Voorraad
+</button>
+
+<button onclick="openModule('Rapporten')">
+  <b>◔</b>
+  Rapporten
+</button>
+
 </nav>
 
+
 <script>
-function show(name){
- document.querySelector('h1').textContent=name;
- window.scrollTo({top:0,behavior:'smooth'});
+
+let products = JSON.parse(
+  localStorage.getItem("horecaProducts") || "[]"
+);
+
+const defaultProducts = [
+  {
+    name:"Ossenhaas",
+    category:"Keuken",
+    quantity:"12,5 kg",
+    price:287.50,
+    supplier:"Hanos"
+  },
+  {
+    name:"Chardonnay",
+    category:"Wijn",
+    quantity:"24 flessen",
+    price:312,
+    supplier:"Wijnleverancier"
+  },
+  {
+    name:"Gin",
+    category:"Drank",
+    quantity:"6 flessen",
+    price:168,
+    supplier:"Drankleverancier"
+  }
+];
+
+if(products.length === 0){
+  products = defaultProducts;
+  saveProducts();
 }
+
+function saveProducts(){
+  localStorage.setItem(
+    "horecaProducts",
+    JSON.stringify(products)
+  );
+}
+
+function money(value){
+  return "€ " + value.toFixed(2).replace(".",",");
+}
+
+function calculateTotal(){
+  return products.reduce(
+    (total,p) => total + Number(p.price || 0),
+    0
+  );
+}
+
+function updateTotals(){
+
+  const total = calculateTotal();
+
+  document.getElementById("totalValue").textContent =
+    money(total);
+
+  document.getElementById("reportValue").textContent =
+    money(total);
+
+  document.getElementById("productCount").textContent =
+    products.length;
+}
+
+function showOnly(id){
+
+  document.getElementById("dashboard").classList.add("hidden");
+  document.getElementById("modulePage").classList.add("hidden");
+  document.getElementById("addProduct").classList.add("hidden");
+  document.getElementById("reports").classList.add("hidden");
+
+  document.getElementById(id).classList.remove("hidden");
+}
+
+function showDashboard(){
+
+  showOnly("dashboard");
+
+  document.getElementById("pageTitle").textContent =
+    "Dashboard";
+
+  renderStock();
+}
+
+function openAddProduct(){
+
+  showOnly("addProduct");
+
+  document.getElementById("pageTitle").textContent =
+    "Product toevoegen";
+}
+
+function openModule(name){
+
+  if(name === "Rapporten"){
+    showOnly("reports");
+    document.getElementById("pageTitle").textContent =
+      "Rapporten";
+    updateTotals();
+    return;
+  }
+
+  showOnly("modulePage");
+
+  document.getElementById("pageTitle").textContent =
+    name;
+
+  document.getElementById("moduleTitle").textContent =
+    name;
+
+  const descriptions = {
+
+    Voorraad:
+      "Beheer alle voorraad van keuken, wijn en drank.",
+
+    Keuken:
+      "Producten, gewichten, porties en kostprijsberekening.",
+
+    Wijn:
+      "Flessenvoorraad en informatie voor de wijnkaart.",
+
+    Dranken:
+      "Barvoorraad, flessen en inkoopprijzen.",
+
+    Leveranciers:
+      "Leveranciers en actuele inkoopprijzen."
+  };
+
+  document.getElementById("moduleDescription").textContent =
+    descriptions[name];
+
+  renderModule(name);
+}
+
+function renderModule(name){
+
+  const content =
+    document.getElementById("moduleContent");
+
+  if(name === "Voorraad"){
+
+    content.innerHTML = `
+      <div class="card">
+        <h2>Alle voorraad</h2>
+        ${products.map(productHTML).join("")}
+      </div>
+
+      <button class="primary"
+        onclick="openAddProduct()">
+        ＋ Product toevoegen
+      </button>
+    `;
+
+    return;
+  }
+
+  if(name === "Keuken"){
+
+    content.innerHTML = `
+      <div class="card">
+        <h2>Keukenvoorraad</h2>
+        ${products
+          .filter(p=>p.category==="Keuken")
+          .map(productHTML)
+          .join("") ||
+          '<div class="empty">Nog geen keukenproducten.</div>'}
+      </div>
+
+      <button class="primary"
+        onclick="openAddProduct()">
+        ＋ Keukenproduct toevoegen
+      </button>
+    `;
+
+    return;
+  }
+
+  if(name === "Wijn"){
+
+    content.innerHTML = `
+      <div class="card">
+        <h2>Wijnvoorraad</h2>
+        ${products
+          .filter(p=>p.category==="Wijn")
+          .map(productHTML)
+          .join("") ||
+          '<div class="empty">Nog geen wijnen.</div>'}
+      </div>
+
+      <button class="primary"
+        onclick="openAddProduct()">
+        ＋ Wijn toevoegen
+      </button>
+    `;
+
+    return;
+  }
+
+  if(name === "Dranken"){
+
+    content.innerHTML = `
+      <div class="card">
+        <h2>Drankenvoorraad</h2>
+        ${products
+          .filter(p=>p.category==="Drank")
+          .map(productHTML)
+          .join("") ||
+          '<div class="empty">Nog geen dranken.</div>'}
+      </div>
+
+      <button class="primary"
+        onclick="openAddProduct()">
+        ＋ Drank toevoegen
+      </button>
+    `;
+
+    return;
+  }
+
+  if(name === "Leveranciers"){
+
+    const suppliers = [
+      ...new Set(products.map(p=>p.supplier))
+    ];
+
+    content.innerHTML = `
+      <div class="card">
+        <h2>Leveranciers</h2>
+
+        ${suppliers.map(supplier => `
+          <div class="stat">
+            <span>🚚 ${supplier}</span>
+            <strong>
+              ${products.filter(
+                p=>p.supplier===supplier
+              ).length}
+            </strong>
+          </div>
+        `).join("")}
+      </div>
+    `;
+
+    return;
+  }
+}
+
+function productHTML(p){
+
+  return `
+    <div class="stock-item">
+      <div>
+        <div class="stock-name">
+          ${p.name}
+        </div>
+
+        <div class="stock-info">
+          ${p.category} ·
+          ${p.quantity} ·
+          ${p.supplier}
+        </div>
+      </div>
+
+      <div class="price">
+        ${money(Number(p.price))}
+      </div>
+    </div>
+  `;
+}
+
+function renderStock(){
+
+  const list =
+    document.getElementById("stockList");
+
+  list.innerHTML =
+    products.map(productHTML).join("");
+
+  updateTotals();
+}
+
 function addProduct(){
- alert('Product toevoegen komt in de volgende bouwstap.');
+
+  const name =
+    document.getElementById("productName").value.trim();
+
+  const category =
+    document.getElementById("productCategory").value;
+
+  const quantity =
+    document.getElementById("productQuantity").value;
+
+  const price =
+    Number(document.getElementById("productPrice").value);
+
+  const supplier =
+    document.getElementById("productSupplier").value.trim();
+
+  if(!name || !quantity || !price || !supplier){
+
+    alert("Vul alle velden in.");
+
+    return;
+  }
+
+  products.push({
+    name:name,
+    category:category,
+    quantity:quantity,
+    price:price,
+    supplier:supplier
+  });
+
+  saveProducts();
+
+  document.getElementById("productName").value="";
+  document.getElementById("productQuantity").value="";
+  document.getElementById("productPrice").value="";
+  document.getElementById("productSupplier").value="";
+
+  alert("Product toegevoegd!");
+
+  showDashboard();
 }
-document.getElementById('search').addEventListener('input',function(){
- const q=this.value.toLowerCase();
- document.querySelectorAll('.item').forEach(x=>{
-   x.style.display=x.textContent.toLowerCase().includes(q)?'flex':'none';
- });
-});
+
+document
+  .getElementById("search")
+  .addEventListener("input",function(){
+
+    const query =
+      this.value.toLowerCase();
+
+    document
+      .querySelectorAll("#stockList .stock-item")
+      .forEach(item => {
+
+        item.style.display =
+          item.textContent
+            .toLowerCase()
+            .includes(query)
+            ? "flex"
+            : "none";
+      });
+  });
+
+updateTotals();
+renderStock();
+
 </script>
+
 </body>
 </html>
