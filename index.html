@@ -767,7 +767,8 @@ parseFloat(document.getElementById("pPrice").value);
 
 const supplier =
 document.getElementById("pSupplier").value.trim();
-
+const minimum =
+parseFloat(document.getElementById("pMinimum").value) || 0;
 
 if(!name || !quantity || !price){
 
@@ -785,8 +786,8 @@ category,
 quantity,
 unit,
 price,
-supplier
-
+supplier,
+minimum
 });
 
 
@@ -800,7 +801,7 @@ document.getElementById("pName").value="";
 document.getElementById("pQuantity").value="";
 document.getElementById("pPrice").value="";
 document.getElementById("pSupplier").value="";
-
+document.getElementById("pMinimum").value="";
 showToast("Product toegevoegd ✓");
 
 }
@@ -871,15 +872,19 @@ ${products.map((p,i)=>`
 
 <div class="item-meta">
 ${escapeHtml(p.category)}
- · ${p.quantity} ${escapeHtml(p.unit)}
+ · ${p.quantity} ${escapeHtml(p.unit)}${p.quantity <= p.minimum ? `<div class="item-meta">⚠️ Bijbestellen</div>` : ""}
 </div>
 
 <div class="item-meta">
 Inkoop: ${money(p.price)} per ${escapeHtml(p.unit)}
 </div>
-
+<div class="item-meta">
+Minimumvoorraad: ${p.minimum}
 </div>
-
+<div class="item-meta">
+Leverancier: ${escapeHtml(p.supplier || "Onbekend")}
+</div>
+</div>
 <div class="item-price">
 ${money(p.quantity*p.price)}
 </div>
