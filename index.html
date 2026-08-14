@@ -1201,7 +1201,112 @@ toast.classList.remove("show");
 
 }
 
+function changeStock(index, amount){
+  const product = products[index];
 
+  if(!product) return;
+
+  product.quantity = Math.max(
+    0,
+    Number(product.quantity) + amount
+  );
+
+  saveData();
+  renderDashboard();
+
+  showToast(
+    product.name +
+    " voorraad aangepast naar " +
+    product.quantity +
+    " " +
+    product.unit
+  );
+}
+
+
+function renderDashboard(){
+
+  const container =
+    document.getElementById("dashboardItems");
+
+  if(!products.length){
+
+    container.innerHTML =
+      '<div class="empty">Nog geen producten.</div>';
+
+    updateTotal();
+    return;
+  }
+
+  container.innerHTML = products.map((p,index)=>`
+
+    <div class="item">
+
+      <div>
+
+        <div class="item-name">
+          ${escapeHtml(p.name)}
+        </div>
+
+        <div class="item-meta">
+          ${escapeHtml(p.category)}
+          · ${p.quantity} ${escapeHtml(p.unit)}
+          ${p.supplier
+            ? " · " + escapeHtml(p.supplier)
+            : ""}
+        </div>
+
+        <div style="
+          display:flex;
+          align-items:center;
+          gap:10px;
+          margin-top:14px;
+        ">
+
+          <button
+            class="secondary"
+            onclick="changeStock(${index},-1)"
+            style="font-size:22px;padding:8px 15px;">
+            −
+          </button>
+
+          <strong style="min-width:70px;text-align:center;">
+            ${p.quantity} ${escapeHtml(p.unit)}
+          </strong>
+
+          <button
+            class="secondary"
+            onclick="changeStock(${index},1)"
+            style="font-size:22px;padding:8px 15px;">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <div class="item-price">
+          ${money(p.quantity * p.price)}
+        </div>
+
+        <br>
+
+        <button
+          class="danger"
+          onclick="deleteProduct(${index})">
+          Verwijder
+        </button>
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+  updateTotal();
+}
 renderDashboard();
 
 </script>
