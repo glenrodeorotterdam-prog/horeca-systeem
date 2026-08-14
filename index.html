@@ -879,7 +879,7 @@ ${escapeHtml(p.category)}
 Inkoop: ${money(p.price)} per ${escapeHtml(p.unit)}
 </div>
 <div class="item-meta">
-Minimumvoorraad: ${p.minimum}
+Minimumvoorraad: ${p.minimum ?? 0}
 </div>
 <div class="item-meta">
 Leverancier: ${escapeHtml(p.supplier || "Onbekend")}
