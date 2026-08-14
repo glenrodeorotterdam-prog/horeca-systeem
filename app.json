@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Horeca Systeem",
+    "slug": "horeca-systeem",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {"supportsTablet": true, "bundleIdentifier": "com.horecasysteem.app"},
+    "android": {"package": "com.horecasysteem.app"}
+  }
+}
