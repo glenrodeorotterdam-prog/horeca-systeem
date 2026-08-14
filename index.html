@@ -11,17 +11,30 @@
   box-sizing:border-box;
 }
 
+:root{
+  --bg:#10151a;
+  --panel:#080d10;
+  --panel2:#111820;
+  --navy:#0f1324;
+  --text:#f5f5f5;
+  --muted:#a9adb2;
+  --line:#263038;
+  --accent:#7167ff;
+  --danger:#d9534f;
+}
+
 body{
   margin:0;
-  background:#10151a;
-  color:#f5f3ef;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  padding-bottom:90px;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
+  "Segoe UI",sans-serif;
+  padding-bottom:95px;
 }
 
 header{
-  background:#0f1324;
-  padding:30px 24px 25px;
+  background:var(--navy);
+  padding:30px 24px 28px;
 }
 
 .logo{
@@ -30,116 +43,131 @@ header{
   opacity:.7;
 }
 
-h1{
-  margin:6px 0 0;
-  font-size:38px;
+header h1{
+  margin:8px 0 0;
+  font-size:40px;
+  line-height:1;
 }
 
 main{
-  max-width:900px;
+  padding:24px;
+  max-width:1000px;
   margin:auto;
-  padding:25px 18px;
 }
 
 .search{
   width:100%;
   padding:18px 20px;
   border:0;
+  outline:none;
   border-radius:20px;
-  background:#080c0f;
+  background:var(--panel);
   color:white;
   font-size:18px;
-  outline:none;
-  margin-bottom:22px;
+  margin-bottom:20px;
+}
+
+.search::placeholder{
+  color:#999;
 }
 
 .card{
-  background:#080c0f;
-  border-radius:22px;
-  padding:25px;
-  margin-bottom:25px;
-  box-shadow:0 8px 25px rgba(0,0,0,.18);
+  background:var(--panel);
+  border-radius:24px;
+  padding:28px;
+  margin-bottom:22px;
+  box-shadow:0 8px 30px rgba(0,0,0,.18);
 }
 
 .label{
+  color:#aeb2b7;
   font-size:13px;
-  letter-spacing:2px;
-  color:#aaa49b;
+  letter-spacing:3px;
   text-transform:uppercase;
 }
 
 .big{
-  font-size:38px;
+  font-size:42px;
   font-weight:800;
-  margin-top:8px;
+  margin-top:12px;
 }
 
 h2{
   font-size:30px;
-  margin:30px 0 18px;
+  margin:34px 0 18px;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
 }
 
 .module{
+  background:var(--panel);
   border:0;
-  border-radius:20px;
-  background:#080c0f;
+  border-radius:22px;
+  padding:24px;
   color:white;
   text-align:left;
-  padding:24px 18px;
-  min-height:160px;
-  font-size:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,.18);
+  min-height:165px;
+  font-size:17px;
+  box-shadow:0 8px 25px rgba(0,0,0,.16);
 }
 
-.module .icon{
+.module:active{
+  transform:scale(.98);
+}
+
+.icon{
+  font-size:34px;
   display:block;
-  font-size:30px;
-  margin-bottom:16px;
+  margin-bottom:18px;
 }
 
 .module strong{
   display:block;
-  font-size:20px;
-  margin-bottom:5px;
+  font-size:22px;
+  margin-bottom:7px;
 }
 
 .module span{
-  color:#bdb9b2;
-  font-size:16px;
+  color:#aeb2b7;
+  line-height:1.35;
 }
 
-.stock-item{
+.inventory{
+  background:var(--panel);
+  border-radius:24px;
+  padding:20px 18px;
+}
+
+.item{
+  padding:20px 10px;
+  border-bottom:1px solid var(--line);
   display:flex;
   justify-content:space-between;
   gap:15px;
-  padding:18px 0;
-  border-bottom:1px solid #34393d;
 }
 
-.stock-item:last-child{
+.item:last-child{
   border-bottom:0;
 }
 
-.stock-name{
-  font-size:19px;
+.item-name{
+  font-size:20px;
   font-weight:700;
 }
 
-.stock-info{
-  color:#aaa9a4;
-  font-size:14px;
+.item-meta{
+  color:#aeb2b7;
   margin-top:5px;
+  font-size:14px;
 }
 
-.price{
+.item-price{
   font-size:19px;
-  font-weight:800;
+  font-weight:700;
   white-space:nowrap;
 }
 
@@ -147,110 +175,202 @@ h2{
   width:100%;
   border:0;
   border-radius:18px;
-  padding:18px;
-  background:#111328;
+  background:var(--navy);
   color:white;
+  padding:18px;
   font-size:18px;
   font-weight:700;
-  margin-top:8px;
+  margin-top:20px;
 }
 
-.hidden{
-  display:none;
-}
-
-.back{
-  border:0;
-  background:transparent;
+.secondary{
+  border:1px solid #303941;
+  background:#161d23;
   color:white;
-  font-size:18px;
-  padding:0;
-  margin-bottom:20px;
+  border-radius:14px;
+  padding:12px 16px;
+}
+
+.danger{
+  background:var(--danger);
+  color:white;
+  border:0;
+  border-radius:12px;
+  padding:10px 13px;
+}
+
+.form{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
 }
 
 .form input,
 .form select{
   width:100%;
   padding:16px;
-  margin:7px 0;
-  border:1px solid #41464a;
   border-radius:14px;
-  background:#151a1e;
+  border:1px solid #303941;
+  background:#080d10;
   color:white;
   font-size:16px;
 }
 
-.form button{
-  width:100%;
-  padding:17px;
-  margin-top:10px;
-  border:0;
-  border-radius:15px;
-  background:#171b35;
-  color:white;
-  font-size:17px;
-  font-weight:700;
+.form label{
+  color:#b9bdc2;
+  font-size:14px;
+}
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
 }
 
 .stat{
-  display:flex;
-  justify-content:space-between;
-  padding:17px 0;
-  border-bottom:1px solid #34393d;
+  background:var(--panel);
+  border-radius:20px;
+  padding:20px;
 }
 
-.stat:last-child{
-  border-bottom:0;
+.stat small{
+  color:#999;
+}
+
+.stat strong{
+  display:block;
+  font-size:27px;
+  margin-top:8px;
+}
+
+.empty{
+  color:#999;
+  padding:25px 10px;
+  text-align:center;
 }
 
 nav{
   position:fixed;
+  z-index:20;
   bottom:0;
   left:0;
   right:0;
-  height:78px;
-  background:#090d10;
-  border-top:1px solid #34393d;
-  display:flex;
-  justify-content:space-around;
-  z-index:20;
+  height:88px;
+  background:#080d10;
+  border-top:1px solid #303941;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
 }
 
 nav button{
-  flex:1;
   border:0;
   background:none;
-  color:#aaa59d;
+  color:#aeb2b7;
   font-size:14px;
 }
 
 nav b{
   display:block;
-  font-size:22px;
+  font-size:25px;
   margin-bottom:4px;
 }
 
-.empty{
-  text-align:center;
-  color:#aaa;
+.modal{
+  position:fixed;
+  z-index:50;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  display:none;
+  align-items:flex-end;
+}
+
+.modal.active{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-height:90vh;
+  overflow:auto;
+  background:#10151a;
+  border-radius:28px 28px 0 0;
   padding:25px;
 }
 
-@media(max-width:500px){
-  h1{
-    font-size:34px;
-  }
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
 
-  h2{
-    font-size:28px;
-  }
+.modal-head h2{
+  margin:0;
+}
 
+.close{
+  width:42px;
+  height:42px;
+  border:0;
+  border-radius:50%;
+  background:#252d34;
+  color:white;
+  font-size:22px;
+}
+
+.toast{
+  position:fixed;
+  z-index:100;
+  left:20px;
+  right:20px;
+  bottom:105px;
+  background:#fff;
+  color:#111;
+  padding:15px;
+  border-radius:15px;
+  text-align:center;
+  font-weight:700;
+  display:none;
+}
+
+.toast.show{
+  display:block;
+}
+
+.hidden{
+  display:none!important;
+}
+
+@media(min-width:700px){
   .grid{
-    gap:12px;
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:420px){
+  main{
+    padding:18px;
+  }
+
+  header{
+    padding:28px 20px;
+  }
+
+  header h1{
+    font-size:36px;
+  }
+
+  .big{
+    font-size:36px;
   }
 
   .module{
+    padding:20px;
     min-height:150px;
+  }
+
+  .module strong{
+    font-size:19px;
   }
 }
 </style>
@@ -265,56 +385,55 @@ nav b{
 
 <main>
 
-<!-- DASHBOARD -->
 <section id="dashboard">
 
 <input
-  class="search"
   id="search"
-  type="search"
-  placeholder="🔎 Zoek product..."
+  class="search"
+  placeholder="🔎  Zoek product..."
+  oninput="searchProducts()"
 >
 
 <div class="card">
   <div class="label">Totale voorraadwaarde</div>
-  <div class="big" id="totalValue">€ 767,50</div>
+  <div class="big" id="totalValue">€ 0,00</div>
 </div>
 
 <h2>Modules</h2>
 
 <div class="grid">
 
-<button class="module" onclick="openModule('Voorraad')">
+<button class="module" onclick="openModule('voorraad')">
   <span class="icon">📦</span>
   <strong>Voorraad</strong>
   <span>Keuken, wijn & drank</span>
 </button>
 
-<button class="module" onclick="openModule('Keuken')">
+<button class="module" onclick="openModule('keuken')">
   <span class="icon">👨‍🍳</span>
   <strong>Keuken</strong>
   <span>Producten & porties</span>
 </button>
 
-<button class="module" onclick="openModule('Wijn')">
+<button class="module" onclick="openModule('wijn')">
   <span class="icon">🍷</span>
   <strong>Wijn</strong>
   <span>Flessen & wijnkaart</span>
 </button>
 
-<button class="module" onclick="openModule('Dranken')">
+<button class="module" onclick="openModule('dranken')">
   <span class="icon">🥃</span>
   <strong>Dranken</strong>
   <span>Barvoorraad</span>
 </button>
 
-<button class="module" onclick="openModule('Leveranciers')">
+<button class="module" onclick="openModule('leveranciers')">
   <span class="icon">🚚</span>
   <strong>Leveranciers</strong>
   <span>Inkoopprijzen</span>
 </button>
 
-<button class="module" onclick="openModule('Rapporten')">
+<button class="module" onclick="openModule('rapporten')">
   <span class="icon">📊</span>
   <strong>Rapporten</strong>
   <span>Waarde & verbruik</span>
@@ -324,33 +443,7 @@ nav b{
 
 <h2>Voorraad</h2>
 
-<div class="card" id="stockList">
-
-<div class="stock-item">
-  <div>
-    <div class="stock-name">Ossenhaas</div>
-    <div class="stock-info">Keuken · 12,5 kg · Hanos</div>
-  </div>
-  <div class="price">€ 287,50</div>
-</div>
-
-<div class="stock-item">
-  <div>
-    <div class="stock-name">Chardonnay</div>
-    <div class="stock-info">Wijn · 24 flessen · Wijnleverancier</div>
-  </div>
-  <div class="price">€ 312,00</div>
-</div>
-
-<div class="stock-item">
-  <div>
-    <div class="stock-name">Gin</div>
-    <div class="stock-info">Drank · 6 flessen · Drankleverancier</div>
-  </div>
-  <div class="price">€ 168,00</div>
-</div>
-
-</div>
+<div class="inventory" id="dashboardItems"></div>
 
 <button class="primary" onclick="openAddProduct()">
   ＋ Product toevoegen
@@ -359,87 +452,11 @@ nav b{
 </section>
 
 
-<!-- MODULE -->
 <section id="modulePage" class="hidden">
 
-<button class="back" onclick="showDashboard()">← Terug naar dashboard</button>
-
-<div class="card">
-  <div class="label">Module</div>
-  <h2 id="moduleTitle">Voorraad</h2>
-  <p id="moduleDescription"></p>
-</div>
+<button class="secondary" onclick="goDashboard()">← Terug</button>
 
 <div id="moduleContent"></div>
-
-</section>
-
-
-<!-- ADD PRODUCT -->
-<section id="addProduct" class="hidden">
-
-<button class="back" onclick="showDashboard()">← Terug</button>
-
-<div class="card form">
-
-<h2>Product toevoegen</h2>
-
-<input id="productName" placeholder="Productnaam">
-
-<select id="productCategory">
-  <option value="Keuken">Keuken</option>
-  <option value="Wijn">Wijn</option>
-  <option value="Drank">Drank</option>
-</select>
-
-<input id="productQuantity" type="number" placeholder="Aantal / kg">
-
-<input id="productPrice" type="number" step="0.01" placeholder="Inkoopprijs">
-
-<input id="productSupplier" placeholder="Leverancier">
-
-<button onclick="addProduct()">Product opslaan</button>
-
-</div>
-
-</section>
-
-
-<!-- RAPPORTEN -->
-<section id="reports" class="hidden">
-
-<button class="back" onclick="showDashboard()">← Terug</button>
-
-<h2>Rapporten</h2>
-
-<div class="card">
-
-<div class="stat">
-  <span>Voorraadwaarde</span>
-  <strong id="reportValue">€ 767,50</strong>
-</div>
-
-<div class="stat">
-  <span>Aantal producten</span>
-  <strong id="productCount">3</strong>
-</div>
-
-<div class="stat">
-  <span>Keuken</span>
-  <strong>€ 287,50</strong>
-</div>
-
-<div class="stat">
-  <span>Wijn</span>
-  <strong>€ 312,00</strong>
-</div>
-
-<div class="stat">
-  <span>Drank</span>
-  <strong>€ 168,00</strong>
-</div>
-
-</div>
 
 </section>
 
@@ -448,17 +465,17 @@ nav b{
 
 <nav>
 
-<button onclick="showDashboard()">
+<button onclick="goDashboard()">
   <b>⌂</b>
   Dashboard
 </button>
 
-<button onclick="openModule('Voorraad')">
-  <b>□</b>
+<button onclick="openModule('voorraad')">
+  <b>▣</b>
   Voorraad
 </button>
 
-<button onclick="openModule('Rapporten')">
+<button onclick="openModule('rapporten')">
   <b>◔</b>
   Rapporten
 </button>
@@ -466,355 +483,726 @@ nav b{
 </nav>
 
 
+<div class="modal" id="productModal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+  <h2>Product toevoegen</h2>
+  <button class="close" onclick="closeModal()">×</button>
+</div>
+
+<div class="form">
+
+<label>Productnaam</label>
+<input id="pName" placeholder="Bijv. Ossenhaas">
+
+<label>Categorie</label>
+<select id="pCategory">
+  <option value="Keuken">Keuken</option>
+  <option value="Wijn">Wijn</option>
+  <option value="Drank">Drank</option>
+  <option value="Overig">Overig</option>
+</select>
+
+<label>Hoeveelheid</label>
+<input id="pQuantity" type="number" step="0.01" placeholder="Bijv. 12.5">
+
+<label>Eenheid</label>
+<select id="pUnit">
+  <option value="kg">kg</option>
+  <option value="liter">liter</option>
+  <option value="flessen">flessen</option>
+  <option value="stuks">stuks</option>
+</select>
+
+<label>Inkoopprijs per eenheid (€)</label>
+<input id="pPrice" type="number" step="0.01" placeholder="Bijv. 23">
+
+<label>Leverancier</label>
+<input id="pSupplier" placeholder="Bijv. HANOS">
+
+<button class="primary" onclick="saveProduct()">
+  Product opslaan
+</button>
+
+</div>
+</div>
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
 <script>
 
 let products = JSON.parse(
-  localStorage.getItem("horecaProducts") || "[]"
-);
+  localStorage.getItem("horecaProducts")
+) || [
 
-const defaultProducts = [
-  {
-    name:"Ossenhaas",
-    category:"Keuken",
-    quantity:"12,5 kg",
-    price:287.50,
-    supplier:"Hanos"
-  },
-  {
-    name:"Chardonnay",
-    category:"Wijn",
-    quantity:"24 flessen",
-    price:312,
-    supplier:"Wijnleverancier"
-  },
-  {
-    name:"Gin",
-    category:"Drank",
-    quantity:"6 flessen",
-    price:168,
-    supplier:"Drankleverancier"
-  }
+{
+ name:"Ossenhaas",
+ category:"Keuken",
+ quantity:12.5,
+ unit:"kg",
+ price:23,
+ supplier:"HANOS"
+},
+
+{
+ name:"Chardonnay",
+ category:"Wijn",
+ quantity:24,
+ unit:"flessen",
+ price:13,
+ supplier:"Wijnleverancier"
+},
+
+{
+ name:"Gin",
+ category:"Drank",
+ quantity:6,
+ unit:"flessen",
+ price:28,
+ supplier:"Drankleverancier"
+}
+
 ];
 
-if(products.length === 0){
-  products = defaultProducts;
-  saveProducts();
-}
-
-function saveProducts(){
-  localStorage.setItem(
-    "horecaProducts",
-    JSON.stringify(products)
-  );
-}
 
 function money(value){
-  return "€ " + value.toFixed(2).replace(".",",");
+
+return new Intl.NumberFormat("nl-NL",{
+ style:"currency",
+ currency:"EUR"
+}).format(value);
+
 }
 
-function calculateTotal(){
-  return products.reduce(
-    (total,p) => total + Number(p.price || 0),
-    0
-  );
+
+function totalValue(){
+
+return products.reduce(
+  (sum,p)=>sum+(p.quantity*p.price),
+  0
+);
+
 }
 
-function updateTotals(){
 
-  const total = calculateTotal();
+function saveData(){
 
-  document.getElementById("totalValue").textContent =
-    money(total);
+localStorage.setItem(
+  "horecaProducts",
+  JSON.stringify(products)
+);
 
-  document.getElementById("reportValue").textContent =
-    money(total);
-
-  document.getElementById("productCount").textContent =
-    products.length;
 }
 
-function showOnly(id){
 
-  document.getElementById("dashboard").classList.add("hidden");
-  document.getElementById("modulePage").classList.add("hidden");
-  document.getElementById("addProduct").classList.add("hidden");
-  document.getElementById("reports").classList.add("hidden");
+function updateTotal(){
 
-  document.getElementById(id).classList.remove("hidden");
+document.getElementById("totalValue").textContent =
+  money(totalValue());
+
 }
 
-function showDashboard(){
 
-  showOnly("dashboard");
+function renderDashboard(){
 
-  document.getElementById("pageTitle").textContent =
-    "Dashboard";
+const container =
+document.getElementById("dashboardItems");
 
-  renderStock();
+if(!products.length){
+
+container.innerHTML =
+  '<div class="empty">Nog geen producten.</div>';
+
+return;
+
 }
+
+container.innerHTML = products.map((p,index)=>`
+
+<div class="item">
+
+<div>
+
+<div class="item-name">
+${escapeHtml(p.name)}
+</div>
+
+<div class="item-meta">
+${escapeHtml(p.category)}
+ · ${p.quantity} ${escapeHtml(p.unit)}
+${p.supplier ? " · "+escapeHtml(p.supplier) : ""}
+</div>
+
+</div>
+
+<div>
+
+<div class="item-price">
+${money(p.quantity*p.price)}
+</div>
+
+<br>
+
+<button
+class="danger"
+onclick="deleteProduct(${index})">
+Verwijder
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+updateTotal();
+
+}
+
+
+function escapeHtml(text){
+
+return String(text)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+function searchProducts(){
+
+const q =
+document.getElementById("search")
+.value
+.toLowerCase();
+
+const container =
+document.getElementById("dashboardItems");
+
+const results =
+products.filter(p=>
+p.name.toLowerCase().includes(q) ||
+p.category.toLowerCase().includes(q) ||
+(p.supplier || "").toLowerCase().includes(q)
+);
+
+if(!results.length){
+
+container.innerHTML =
+'<div class="empty">Geen producten gevonden.</div>';
+
+return;
+
+}
+
+container.innerHTML = results.map(p=>`
+
+<div class="item">
+
+<div>
+<div class="item-name">
+${escapeHtml(p.name)}
+</div>
+
+<div class="item-meta">
+${escapeHtml(p.category)}
+ · ${p.quantity} ${escapeHtml(p.unit)}
+ · ${escapeHtml(p.supplier || "Geen leverancier")}
+</div>
+</div>
+
+<div class="item-price">
+${money(p.quantity*p.price)}
+</div>
+
+</div>
+
+`).join("");
+
+}
+
 
 function openAddProduct(){
 
-  showOnly("addProduct");
+document.getElementById("productModal")
+.classList.add("active");
 
-  document.getElementById("pageTitle").textContent =
-    "Product toevoegen";
 }
 
-function openModule(name){
 
-  if(name === "Rapporten"){
-    showOnly("reports");
-    document.getElementById("pageTitle").textContent =
-      "Rapporten";
-    updateTotals();
-    return;
-  }
+function closeModal(){
 
-  showOnly("modulePage");
+document.getElementById("productModal")
+.classList.remove("active");
 
-  document.getElementById("pageTitle").textContent =
-    name;
-
-  document.getElementById("moduleTitle").textContent =
-    name;
-
-  const descriptions = {
-
-    Voorraad:
-      "Beheer alle voorraad van keuken, wijn en drank.",
-
-    Keuken:
-      "Producten, gewichten, porties en kostprijsberekening.",
-
-    Wijn:
-      "Flessenvoorraad en informatie voor de wijnkaart.",
-
-    Dranken:
-      "Barvoorraad, flessen en inkoopprijzen.",
-
-    Leveranciers:
-      "Leveranciers en actuele inkoopprijzen."
-  };
-
-  document.getElementById("moduleDescription").textContent =
-    descriptions[name];
-
-  renderModule(name);
 }
 
-function renderModule(name){
 
-  const content =
-    document.getElementById("moduleContent");
+function saveProduct(){
 
-  if(name === "Voorraad"){
+const name =
+document.getElementById("pName").value.trim();
 
-    content.innerHTML = `
-      <div class="card">
-        <h2>Alle voorraad</h2>
-        ${products.map(productHTML).join("")}
-      </div>
+const category =
+document.getElementById("pCategory").value;
 
-      <button class="primary"
-        onclick="openAddProduct()">
-        ＋ Product toevoegen
-      </button>
-    `;
+const quantity =
+parseFloat(document.getElementById("pQuantity").value);
 
-    return;
-  }
+const unit =
+document.getElementById("pUnit").value;
 
-  if(name === "Keuken"){
+const price =
+parseFloat(document.getElementById("pPrice").value);
 
-    content.innerHTML = `
-      <div class="card">
-        <h2>Keukenvoorraad</h2>
-        ${products
-          .filter(p=>p.category==="Keuken")
-          .map(productHTML)
-          .join("") ||
-          '<div class="empty">Nog geen keukenproducten.</div>'}
-      </div>
+const supplier =
+document.getElementById("pSupplier").value.trim();
 
-      <button class="primary"
-        onclick="openAddProduct()">
-        ＋ Keukenproduct toevoegen
-      </button>
-    `;
 
-    return;
-  }
+if(!name || !quantity || !price){
 
-  if(name === "Wijn"){
+showToast("Vul product, hoeveelheid en prijs in.");
 
-    content.innerHTML = `
-      <div class="card">
-        <h2>Wijnvoorraad</h2>
-        ${products
-          .filter(p=>p.category==="Wijn")
-          .map(productHTML)
-          .join("") ||
-          '<div class="empty">Nog geen wijnen.</div>'}
-      </div>
+return;
 
-      <button class="primary"
-        onclick="openAddProduct()">
-        ＋ Wijn toevoegen
-      </button>
-    `;
-
-    return;
-  }
-
-  if(name === "Dranken"){
-
-    content.innerHTML = `
-      <div class="card">
-        <h2>Drankenvoorraad</h2>
-        ${products
-          .filter(p=>p.category==="Drank")
-          .map(productHTML)
-          .join("") ||
-          '<div class="empty">Nog geen dranken.</div>'}
-      </div>
-
-      <button class="primary"
-        onclick="openAddProduct()">
-        ＋ Drank toevoegen
-      </button>
-    `;
-
-    return;
-  }
-
-  if(name === "Leveranciers"){
-
-    const suppliers = [
-      ...new Set(products.map(p=>p.supplier))
-    ];
-
-    content.innerHTML = `
-      <div class="card">
-        <h2>Leveranciers</h2>
-
-        ${suppliers.map(supplier => `
-          <div class="stat">
-            <span>🚚 ${supplier}</span>
-            <strong>
-              ${products.filter(
-                p=>p.supplier===supplier
-              ).length}
-            </strong>
-          </div>
-        `).join("")}
-      </div>
-    `;
-
-    return;
-  }
 }
 
-function productHTML(p){
 
-  return `
-    <div class="stock-item">
-      <div>
-        <div class="stock-name">
-          ${p.name}
-        </div>
+products.push({
 
-        <div class="stock-info">
-          ${p.category} ·
-          ${p.quantity} ·
-          ${p.supplier}
-        </div>
-      </div>
+name,
+category,
+quantity,
+unit,
+price,
+supplier
 
-      <div class="price">
-        ${money(Number(p.price))}
-      </div>
-    </div>
-  `;
+});
+
+
+saveData();
+
+renderDashboard();
+
+closeModal();
+
+document.getElementById("pName").value="";
+document.getElementById("pQuantity").value="";
+document.getElementById("pPrice").value="";
+document.getElementById("pSupplier").value="";
+
+showToast("Product toegevoegd ✓");
+
 }
 
-function renderStock(){
 
-  const list =
-    document.getElementById("stockList");
+function deleteProduct(index){
 
-  list.innerHTML =
-    products.map(productHTML).join("");
+if(!confirm(
+"Wil je dit product echt verwijderen?"
+)) return;
 
-  updateTotals();
+products.splice(index,1);
+
+saveData();
+
+renderDashboard();
+
+showToast("Product verwijderd");
+
 }
 
-function addProduct(){
 
-  const name =
-    document.getElementById("productName").value.trim();
+function openModule(module){
 
-  const category =
-    document.getElementById("productCategory").value;
+document.getElementById("dashboard")
+.classList.add("hidden");
 
-  const quantity =
-    document.getElementById("productQuantity").value;
+document.getElementById("modulePage")
+.classList.remove("hidden");
 
-  const price =
-    Number(document.getElementById("productPrice").value);
+const content =
+document.getElementById("moduleContent");
 
-  const supplier =
-    document.getElementById("productSupplier").value.trim();
+const title =
+document.getElementById("pageTitle");
 
-  if(!name || !quantity || !price || !supplier){
 
-    alert("Vul alle velden in.");
+if(module==="voorraad"){
 
-    return;
-  }
+title.textContent="Voorraad";
 
-  products.push({
-    name:name,
-    category:category,
-    quantity:quantity,
-    price:price,
-    supplier:supplier
-  });
+content.innerHTML=`
 
-  saveProducts();
+<h2>Alle voorraad</h2>
 
-  document.getElementById("productName").value="";
-  document.getElementById("productQuantity").value="";
-  document.getElementById("productPrice").value="";
-  document.getElementById("productSupplier").value="";
+<div class="stat-grid">
 
-  alert("Product toegevoegd!");
+<div class="stat">
+<small>Producten</small>
+<strong>${products.length}</strong>
+</div>
 
-  showDashboard();
+<div class="stat">
+<small>Voorraadwaarde</small>
+<strong>${money(totalValue())}</strong>
+</div>
+
+</div>
+
+<div class="inventory" style="margin-top:20px">
+
+${products.map((p,i)=>`
+
+<div class="item">
+
+<div>
+<div class="item-name">${escapeHtml(p.name)}</div>
+
+<div class="item-meta">
+${escapeHtml(p.category)}
+ · ${p.quantity} ${escapeHtml(p.unit)}
+</div>
+
+<div class="item-meta">
+Inkoop: ${money(p.price)} per ${escapeHtml(p.unit)}
+</div>
+
+</div>
+
+<div class="item-price">
+${money(p.quantity*p.price)}
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+<button class="primary"
+onclick="openAddProduct()">
+＋ Product toevoegen
+</button>
+
+`;
+
 }
 
-document
-  .getElementById("search")
-  .addEventListener("input",function(){
 
-    const query =
-      this.value.toLowerCase();
+if(module==="keuken"){
 
-    document
-      .querySelectorAll("#stockList .stock-item")
-      .forEach(item => {
+title.textContent="Keuken";
 
-        item.style.display =
-          item.textContent
-            .toLowerCase()
-            .includes(query)
-            ? "flex"
-            : "none";
-      });
-  });
+const list =
+products.filter(p=>p.category==="Keuken");
 
-updateTotals();
-renderStock();
+content.innerHTML=`
+
+<h2>Keukenvoorraad</h2>
+
+<p style="color:#aaa">
+Hier gaan we de slimme keukenmodule verder bouwen.
+</p>
+
+<div class="inventory">
+
+${list.length ? list.map(p=>`
+
+<div class="item">
+
+<div>
+<div class="item-name">
+👨‍🍳 ${escapeHtml(p.name)}
+</div>
+
+<div class="item-meta">
+${p.quantity} ${escapeHtml(p.unit)}
+</div>
+</div>
+
+<div class="item-price">
+${money(p.quantity*p.price)}
+</div>
+
+</div>
+
+`).join("") :
+'<div class="empty">Geen keukenproducten.</div>'}
+
+</div>
+
+`;
+
+}
+
+
+if(module==="wijn"){
+
+title.textContent="Wijn";
+
+const list =
+products.filter(p=>p.category==="Wijn");
+
+content.innerHTML=`
+
+<h2>Wijnvoorraad</h2>
+
+<div class="inventory">
+
+${list.length ? list.map(p=>`
+
+<div class="item">
+
+<div>
+<div class="item-name">
+🍷 ${escapeHtml(p.name)}
+</div>
+
+<div class="item-meta">
+${p.quantity} ${escapeHtml(p.unit)}
+ · ${escapeHtml(p.supplier || "")}
+</div>
+</div>
+
+<div class="item-price">
+${money(p.quantity*p.price)}
+</div>
+
+</div>
+
+`).join("") :
+'<div class="empty">Geen wijnproducten.</div>'}
+
+</div>
+
+<h2>Wijnkaart</h2>
+
+<div class="card">
+<p style="color:#aaa">
+Binnenkort kunnen we hier automatisch per wijn
+de streek, druif, rijping, smaakprofiel en
+passende gerechten toevoegen.
+</p>
+</div>
+
+`;
+
+}
+
+
+if(module==="dranken"){
+
+title.textContent="Dranken";
+
+const list =
+products.filter(p=>p.category==="Drank");
+
+content.innerHTML=`
+
+<h2>Barvoorraad</h2>
+
+<div class="inventory">
+
+${list.length ? list.map(p=>`
+
+<div class="item">
+
+<div>
+<div class="item-name">
+🥃 ${escapeHtml(p.name)}
+</div>
+
+<div class="item-meta">
+${p.quantity} ${escapeHtml(p.unit)}
+</div>
+</div>
+
+<div class="item-price">
+${money(p.quantity*p.price)}
+</div>
+
+</div>
+
+`).join("") :
+'<div class="empty">Geen drankproducten.</div>'}
+
+</div>
+
+`;
+
+}
+
+
+if(module==="leveranciers"){
+
+title.textContent="Leveranciers";
+
+const suppliers =
+[...new Set(
+products
+.map(p=>p.supplier)
+.filter(Boolean)
+)];
+
+content.innerHTML=`
+
+<h2>Leveranciers</h2>
+
+<div class="inventory">
+
+${suppliers.length ? suppliers.map(s=>`
+
+<div class="item">
+
+<div class="item-name">
+🚚 ${escapeHtml(s)}
+</div>
+
+<div class="item-meta">
+${products.filter(p=>p.supplier===s).length}
+ producten
+</div>
+
+</div>
+
+`).join("") :
+'<div class="empty">Nog geen leveranciers.</div>'}
+
+</div>
+
+`;
+
+}
+
+
+if(module==="rapporten"){
+
+title.textContent="Rapporten";
+
+const kitchenValue =
+products
+.filter(p=>p.category==="Keuken")
+.reduce((s,p)=>s+p.quantity*p.price,0);
+
+const wineValue =
+products
+.filter(p=>p.category==="Wijn")
+.reduce((s,p)=>s+p.quantity*p.price,0);
+
+const drinkValue =
+products
+.filter(p=>p.category==="Drank")
+.reduce((s,p)=>s+p.quantity*p.price,0);
+
+content.innerHTML=`
+
+<h2>Voorraadrapport</h2>
+
+<div class="stat-grid">
+
+<div class="stat">
+<small>Totale waarde</small>
+<strong>${money(totalValue())}</strong>
+</div>
+
+<div class="stat">
+<small>Keuken</small>
+<strong>${money(kitchenValue)}</strong>
+</div>
+
+<div class="stat">
+<small>Wijn</small>
+<strong>${money(wineValue)}</strong>
+</div>
+
+<div class="stat">
+<small>Drank</small>
+<strong>${money(drinkValue)}</strong>
+</div>
+
+</div>
+
+<h2>Producten</h2>
+
+<div class="card">
+
+<div class="item">
+<span>Totale producten</span>
+<strong>${products.length}</strong>
+</div>
+
+<div class="item">
+<span>Keukenproducten</span>
+<strong>
+${products.filter(p=>p.category==="Keuken").length}
+</strong>
+</div>
+
+<div class="item">
+<span>Wijnproducten</span>
+<strong>
+${products.filter(p=>p.category==="Wijn").length}
+</strong>
+</div>
+
+<div class="item">
+<span>Drankproducten</span>
+<strong>
+${products.filter(p=>p.category==="Drank").length}
+</strong>
+</div>
+
+</div>
+
+`;
+
+}
+
+}
+
+
+function goDashboard(){
+
+document.getElementById("modulePage")
+.classList.add("hidden");
+
+document.getElementById("dashboard")
+.classList.remove("hidden");
+
+document.getElementById("pageTitle")
+.textContent="Dashboard";
+
+renderDashboard();
+
+}
+
+
+function showToast(message){
+
+const toast =
+document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+toast.classList.remove("show");
+},2200);
+
+}
+
+
+renderDashboard();
 
 </script>
 
