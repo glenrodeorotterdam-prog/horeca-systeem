@@ -762,6 +762,11 @@ function adjustStock(index, amount, module="voorraad"){
     `${products[index].name}: ${products[index].quantity} ${products[index].unit}`
   );
 }
+function getOrderList(){
+  return products.filter(p =>
+    Number(p.quantity || 0) < Number(p.minimum || 0)
+  );
+}
 function saveProduct(){
 
 const name =
@@ -856,8 +861,9 @@ document.getElementById("pageTitle");
 if(module==="voorraad"){
 
 title.textContent="Voorraad";
-
+const orderList = getOrderList();
 content.innerHTML=`
+
 
 <h2>Alle voorraad</h2>
 
@@ -912,7 +918,37 @@ ${money(p.quantity*p.price)}
 `).join("")}
 
 </div>
+<div class="order-section" style="margin-top:24px;">
+  <h2>🛒 Bestellijst</h2>
+  <p style="color:#aaa;">
+    Producten die onder de minimumvoorraad komen.
+  </p>
 
+  ${orderList.length ? `
+    <div class="inventory">
+      ${orderList.map(p => `
+        <div class="item">
+          <div>
+            <div class="item-name">${escapeHtml(p.name)}</div>
+            <div class="item-meta">
+              Voorraad: ${p.quantity} ${escapeHtml(p.unit)}
+            </div>
+            <div class="item-meta">
+              Minimum: ${p.minimum ?? 0} ${escapeHtml(p.unit)}
+            </div>
+          </div>
+          <div class="item-price">
+            Bestellen: ${Math.max(0, Number(p.minimum ?? 0) - Number(p.quantity ?? 0))} ${escapeHtml(p.unit)}
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  ` : `
+    <div class="empty">
+      ✅ Alles is op voorraad
+    </div>
+  `}
+</div>
 <button class="primary"
 onclick="openAddProduct()">
 ＋ Product toevoegen
