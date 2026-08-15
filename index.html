@@ -950,7 +950,9 @@ ${list.length ? list.map(p=>`
 </div>
 
 <div class="item-meta">
-${p.quantity} ${escapeHtml(p.unit)}
+${p.quantity} ${escapeHtml(p.unit)}${Number(p.quantity) < Number(p.minimum ?? 0)
+  ? `<div style="color:#ff5c5c;font-weight:700;margin-top:6px;">🔴 Voorraad laag — minimum ${p.minimum ?? 0} ${escapeHtml(p.unit)}</div>`
+  : ""}
 </div><div class="stock-controls">
 <button onclick="adjustStock(${products.indexOf(p)}, -1, 'keuken')">−</button>
 <span>${p.quantity}</span>
