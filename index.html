@@ -872,7 +872,7 @@ ${products.map((p,i)=>`
 
 <div class="item-meta">
 ${escapeHtml(p.category)}
- · ${p.quantity} ${escapeHtml(p.unit)}${p.quantity <= p.minimum ? `<div class="item-meta">⚠️ Bijbestellen</div>` : ""}
+· ${p.quantity} ${escapeHtml(p.unit)}${p.quantity < (p.minimum ?? 0) ? `<div class="item-meta">⚠️ Bijbestellen: ${Math.max((p.minimum ?? 0) - p.quantity, 0)} ${escapeHtml(p.unit)}</div>` : ""}
 </div>
 
 <div class="item-meta">
