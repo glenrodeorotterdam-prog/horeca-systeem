@@ -747,7 +747,21 @@ document.getElementById("productModal")
 
 }
 
+function adjustStock(index, amount){
+  if(!products[index]) return;
 
+  products[index].quantity = Math.max(
+    0,
+    Number(products[index].quantity || 0) + amount
+  );
+
+  saveData();
+  renderDashboard();
+
+  showToast(
+    `${products[index].name}: ${products[index].quantity} ${products[index].unit}`
+  );
+}
 function saveProduct(){
 
 const name =
@@ -873,6 +887,10 @@ ${products.map((p,i)=>`
 <div class="item-meta">
 ${escapeHtml(p.category)}
 · ${p.quantity} ${escapeHtml(p.unit)}${p.quantity < (p.minimum ?? 0) ? `<div class="item-meta">⚠️ Bijbestellen: ${Math.max((p.minimum ?? 0) - p.quantity, 0)} ${escapeHtml(p.unit)}</div>` : ""}
+</div><div class="stock-controls">
+  <button onclick="adjustStock(${i}, -1)">−</button>
+  <span>${p.quantity}</span>
+  <button onclick="adjustStock(${i}, 1)">+</button>
 </div>
 
 <div class="item-meta">
