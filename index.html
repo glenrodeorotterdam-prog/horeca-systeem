@@ -952,9 +952,9 @@ ${list.length ? list.map(p=>`
 <div class="item-meta">
 ${p.quantity} ${escapeHtml(p.unit)}
 </div><div class="stock-controls">
-<button onclick="adjustStock(products.indexOf(p), -1, 'keuken')">−</button>
+<button onclick="adjustStock(${products.indexOf(p)}, -1, 'keuken')">−</button>
 <span>${p.quantity}</span>
-<button onclick="adjustStock(products.indexOf(p), 1, 'keuken')">+</button>
+<button onclick="adjustStock(${products.indexOf(p)}, 1, 'keuken')">+</button>
 </div>
 </div>
 
