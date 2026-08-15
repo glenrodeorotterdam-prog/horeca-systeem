@@ -940,7 +940,16 @@ ${money(p.quantity*p.price)}
           <div class="item-price">
             Bestellen: ${Math.max(0, Number(p.minimum ?? 0) - Number(p.quantity ?? 0))} ${escapeHtml(p.unit)}
           </div>
-        </div>
+<div class="item-meta">
+Leverancier: ${escapeHtml(p.supplier || "Onbekend")}
+</div>
+<div class="item-meta">
+Bestelwaarde: ${money(
+  Math.max(0, Number(p.minimum ?? 0) - Number(p.quantity ?? 0)) *
+  Number(p.price ?? 0)
+)}
+</div>
+                </div>
       `).join("")}
     </div>
   ` : `
