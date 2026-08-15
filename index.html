@@ -756,7 +756,7 @@ function adjustStock(index, amount){
   );
 
   saveData();
-  renderDashboard();
+  openModule("voorraad");
 
   showToast(
     `${products[index].name}: ${products[index].quantity} ${products[index].unit}`
