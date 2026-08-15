@@ -747,7 +747,7 @@ document.getElementById("productModal")
 
 }
 
-function adjustStock(index, amount){
+function adjustStock(index, amount, module="voorraad"){
   if(!products[index]) return;
 
   products[index].quantity = Math.max(
